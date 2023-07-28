@@ -1,5 +1,6 @@
 import os
 import shutil
+import customtkinter
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import logging
@@ -43,7 +44,7 @@ def move_files_and_delete_subfolders(root_folder):
     result_message = f"Operation Complete\nFiles moved: {successful_moves}\nFiles failed: {failed_moves}"
     messagebox.showinfo("Result", result_message)
 
-    status_label.config(text=result_message)
+    label.configure(text=result_message)
 
 
 def clear_log_files():
@@ -64,10 +65,10 @@ def clear_log_files():
         logger.addHandler(file_handler)
 
         logger.info("Log file cleared.")
-        status_label.config(text="Log file cleared.")
+        label.configure(text="Log file cleared.")
     except Exception as e:
         logger.error(f"Failed to clear log file: {str(e)}")
-        status_label.config(text="Failed to clear log file.")
+        label.configure(text="Failed to clear log file.")
 
 
 def select_root_folder():
@@ -91,23 +92,29 @@ console_formatter = logging.Formatter("%(levelname)s - %(message)s")
 console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
-root = tk.Tk()
-root.title("Move Files and Delete Subfolders")
-root.geometry("400x200")
-root.resizable(False, False)
-root.eval('tk::PlaceWindow . center')
+# GUI
+# Modes: system (default), light, dark
+customtkinter.set_appearance_mode("System")
+# Themes: blue (default), dark-blue, green
+customtkinter.set_default_color_theme("blue")
 
-label = tk.Label(root, text="Click the button to select the root folder.")
-label.pack(pady=10)
+app = customtkinter.CTk()
+app.title("Move Files and Delete Subfolders")
+app.geometry("400x220")
+app.resizable(False, False)
 
-select_button = tk.Button(
-    root, text="Select Root Folder", command=select_root_folder)
+customtkinter.CTkLabel(
+    app, text="Click the button to select the root folder.").pack(pady=20)
+
+select_button = customtkinter.CTkButton(
+    app, text="Select Root Folder", command=select_root_folder)
 select_button.pack()
 
-clear_log_button = tk.Button(root, text="Clear Log", command=clear_log_files)
+clear_log_button = customtkinter.CTkButton(
+    app, text="Clear Log", command=clear_log_files)
 clear_log_button.pack()
 
-status_label = tk.Label(root, text="", wraplength=350, justify="left")
-status_label.pack(pady=20)
+label = customtkinter.CTkLabel(app, text="", width=500, justify="left")
+label.pack(pady=20)
 
-root.mainloop()
+app.mainloop()
