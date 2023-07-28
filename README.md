@@ -16,7 +16,7 @@ Install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) first.
 
 `pip3 install customtkinter`
 
-Start: Run the script with run.bat or
+Run the script with **run.bat** or
 
 `python main.py.`
 
