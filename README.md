@@ -18,7 +18,7 @@ Install [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) first.
 
 Run the script with **run.bat** or
 
-`python main.py.`
+`python main.py`
 
 <ol>
 <li>Click the "Select Root Folder" button to choose the destination root folder for moving the files.</li>
