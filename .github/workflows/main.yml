@@ -1,0 +1,19 @@
+name: Test Python Script
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x  # Replace 'x' with the desired Python version (e.g., 3.8)
+
+    - name: Run script
+      run: python main.py  # Replace 'file_mover.py' with the actual filename of your Python script
