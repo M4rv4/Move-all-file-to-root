@@ -15,5 +15,8 @@ jobs:
       with:
         python-version: 3.x  # Replace 'x' with the desired Python version (e.g., 3.8)
 
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Install all dependencies listed in requirements.txt
+
     - name: Run script
-      run: python main.py  # Replace 'file_mover.py' with the actual filename of your Python script
+      run: python main.py  # Replace 'main.py' with the actual filename of your Python script
